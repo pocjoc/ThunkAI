@@ -29,8 +29,10 @@ Parameters list:<br>
  Receiving the response<br>
  To receive the response, you must use receive message block from Web_viewer component.
 
- Please refere to ExampleDesign.jpg and ExampleBlock.jpg for the thunkable program that connects with this component.
-
+ In the following images, you can see an example of a thunkable program that connects with this component.
+ 
+<img src="https://github.com/pocjoc/ThunkAI/blob/main/ExampleDesign.jpg" />
+<img src="https://github.com/pocjoc/ThunkAI/blob/main/ExampleBlocks.jpg" />
 
  NOTES:
  - Important to add a Camera in order to set the right permisions to allow the mobile to use the camera
