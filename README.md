@@ -11,19 +11,19 @@ All configuration parameters are defined with a name, a colon and the values.
 To define it from the thunkable platform, you must use the block call PostMessage from Web_viewer component
 
 Parameters list:<br>
-  URL: URL base where the teachable machine model and metadata is
-    Ex: URL:https://teachablemachine.withgoogle.com/models/YUoaPsjXu/
-  Debug: boolean to indicate the web page to run in debug mode
-    Ex: Debug:0
-  AudioOn:To enable the audio in the user media
-    Ex: AudioOn:0
-  WxH: Canvas and video size. Width x Height
-    Ex: WxH:760x1024
-  TimeStable: Time which is considered a stable image (in milliseconds)
-    Ex: TimeStable:500
-  Init: to initialize the model and start the camera to begin the recognition
-  	The camera index is the parameter to sent (normally 0 for rear camera and 1 for front camera)
-    Ex: Init:0
+  URL: URL base where the teachable machine model and metadata is<br>
+    Ex: URL:https://teachablemachine.withgoogle.com/models/YUoaPsjXu/<br>
+  Debug: boolean to indicate the web page to run in debug mode<br>
+    Ex: Debug:0<br>
+  AudioOn:To enable the audio in the user media<br>
+    Ex: AudioOn:0<br>
+  WxH: Canvas and video size. Width x Height<br>
+    Ex: WxH:760x1024<br>
+  TimeStable: Time which is considered a stable image (in milliseconds)<br>
+    Ex: TimeStable:500<br>
+  Init: to initialize the model and start the camera to begin the recognition<br>
+  	The camera index is the parameter to sent (normally 0 for rear camera and 1 for front camera)<br>
+    Ex: Init:0<br>
 
 
  Receiving the response<br>
