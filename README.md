@@ -6,11 +6,11 @@ You can try to generate it using the teachable machine (https://teachablemachine
 
 Once you have the model generate, you must configure the url to point to the model.
 
-Configuration parameters:
+Configuration parameters:<br>
 All configuration parameters are defined with a name, a colon and the values. 
 To define it from the thunkable platform, you must use the block call PostMessage from Web_viewer component
 
-Parameters list:
+Parameters list:<br>
   URL: URL base where the teachable machine model and metadata is
     Ex: URL:https://teachablemachine.withgoogle.com/models/YUoaPsjXu/
   Debug: boolean to indicate the web page to run in debug mode
@@ -26,7 +26,7 @@ Parameters list:
     Ex: Init:0
 
 
- Receiving the response
+ Receiving the response<br>
  To receive the response, you must use receive message block from Web_viewer component.
 
  Please refere to ExampleDesign.jpg and ExampleBlock.jpg for the thunkable program that connects with this component.
