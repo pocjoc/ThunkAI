@@ -210,10 +210,10 @@
 			const prediction = await theModel_.predict(canvas_);
 			max = 0;
 			index = 0;
-			var foundPredictions = ""
+			var res = ""
 			for (let i = 0; i < numClassesDefined_; i++) 
 			{
-				foundPredictions += prediction[i].className + "("+prediction[i].probability.toFixed(2)+")<br>"
+				res += prediction[i].className + "("+prediction[i].probability.toFixed(2)+")<br>"
 				if (max < prediction[i].probability.toFixed(2))
 				{
 					max = prediction[i].probability.toFixed(2);
@@ -221,7 +221,7 @@
 				}
 			}
 			
-			setMessage(foundPredictions);
+			setMessage(res);
 
 			var currTextFound = prediction[index].className;
 			if (lastTextFound_ == currTextFound)
