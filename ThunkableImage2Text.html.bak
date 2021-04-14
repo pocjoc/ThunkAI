@@ -9,12 +9,12 @@
 	</head>
 	<body>
 		<div id="debugPanel">
-			<div>Debug mode on. V2.4</div>
+			<div>Debug mode on. V2.0</div>
 			<button type="button" id="initButton" onclick="init('1')">Start</button>
 			<button type="button" id="reloadButton" onclick="location.reload()">Reload</button>
 			<div id="theInformationLabel"></div>
 		</div>
-		<video id="theVideo" style="width:100%"></div>
+		<video id="theVideo"></div>
 		<div id="theDivCanvas"></div>
 	</body>
 
@@ -25,13 +25,11 @@
 
 
 		// -----------------------
-		// Attributes changeable using messages from thunkable program
+		// Attributes changeable using messages from a thunkable program
 		// -----------------------
 		// Set it to true to see a label with the initialization process and the text interpreted
 		// Change it using the message 'Debug:[0|1]' or 'Debug:[true|false]'
-		var _DEBUG_ = false;
-		// Set it to true to post the debug message 
-		var _ECHO_ = false;
+		var _DEBUG_ = true;
 		document.getElementById("debugPanel").hidden = !_DEBUG_;
 		// URL base where the teachable machine model and metadata is
 		// Change it using the message 'URL:<string>'
@@ -103,16 +101,11 @@
 			timeConsiderStable_ = parseInt(timeStable);
 		}
 
-		function setMessage(msg, postMessage)
+		function setMessage(msg)
 		{
 			if (_DEBUG_)
 			{
 				document.getElementById("theInformationLabel").innerHTML = msg;
-			}
-
-			if (postMessage && _ECHO_)
-			{
-				ThunkableWebviewerExtension.postMessage(msg);
 			}
 		}
 
@@ -136,12 +129,12 @@
 		// Initializates the model and calls to initializate the camera
 	    async function init(indexCam) 
 		{			
-			setMessage("Initializing model", true);
+			setMessage("Initializing model");
 	        const modelURL = URL_ + "model.json";
 		    const metadataURL = URL_ + "metadata.json";
 		    theModel_ = await tmImage.load(modelURL, metadataURL);
 	        numClassesDefined_ = theModel_.getTotalClasses();
-			setMessage("Initializing system", true);
+			setMessage("Initializing system");
 			try
 			{
 				// Once the model is initiated, we init the camera using the index device
@@ -149,14 +142,14 @@
 			}
 			catch (error)
 			{
-				setMessage("Error initializing Cam. " + error, true);
+				setMessage("Error initializing Cam. " + error);
 			}
 		}
 
 	    // Load the image model and setup the webcam
 		async function initCam(indexCam) 
 		{
-			setMessage("Initializing CAM("+indexCam+")", true);
+			setMessage("Initializing CAM("+indexCam+")");
 
 			navigator.mediaDevices.enumerateDevices()
 				.then(function(devices) {
@@ -175,18 +168,18 @@
 						msg += cameras[iCnt];
 						br = "<br>";
 					}
-					setMessage(msg, true);
+					setMessage(msg);
   					continueCam(cameras[parseInt(indexCam)]);
 				})
 				.catch(function(err) 
 				{
-					setMessage(err.name + ": " + err.message, true);
+					setMessage(err.name + ": " + err.message);
 				});
 		}
 
 		async function continueCam(idCamera)
 		{
-			setMessage("Using camera: " + idCamera, true);
+			setMessage("Using camera: " + idCamera);
 			const constraints2 = { audio: audioOn_, 
 								   video: {  
 								     width: canvasWidth,
@@ -197,14 +190,14 @@
 
 			navigator.mediaDevices.getUserMedia(constraints2)
 				.then(function(mediaStream) {
-					setMessage("CAM Initialized", true);
+					setMessage("CAM Initialized");
 					video_.srcObject = mediaStream;
 					video_.onloadedmetadata = function(e) {
 						video_.play();
 						window.requestAnimationFrame(loop);
 					};
 				})
-				.catch(function(err) { setMessage(err.name + ": " + err.message, true); }); // always check for errors at the end.
+				.catch(function(err) { setMessage(err.name + ": " + err.message); }); // always check for errors at the end.
 		}
 
 		// The loop will capturate the video image, pass it to the canvas and
@@ -217,10 +210,10 @@
 			const prediction = await theModel_.predict(canvas_);
 			max = 0;
 			index = 0;
-			var res = ""
+			var foundPredictions = ""
 			for (let i = 0; i < numClassesDefined_; i++) 
 			{
-				res += prediction[i].className + "("+prediction[i].probability.toFixed(2)+")<br>"
+				foundPredictions += prediction[i].className + "("+prediction[i].probability.toFixed(2)+")<br>"
 				if (max < prediction[i].probability.toFixed(2))
 				{
 					max = prediction[i].probability.toFixed(2);
@@ -228,7 +221,7 @@
 				}
 			}
 			
-			setMessage(res, true);
+			setMessage(foundPredictions);
 
 			var currTextFound = prediction[index].className;
 			if (lastTextFound_ == currTextFound)
@@ -258,7 +251,7 @@
 		// For instance InitCam1
 		ThunkableWebviewerExtension.receiveMessage(function(missatge) 
 		{
-			setMessage(missatge, false);
+			setMessage(missatge);
 			if (missatge.substring(0,4) == "URL:")
 			{
 				setURL(missatge.substring(4,missatge.length));
@@ -279,9 +272,9 @@
 			{
 				setTimeStable(missatge.substring(11,missatge.length));
 			}
-			else if (missatge.substring(0,5) == "Init:")
+			else if (missatge.substring(0,8) == "Init:")
 			{
-				init(missatge.substring(5,6));
+				init(missatge.substring(8,9));
 			}
 		});
 
