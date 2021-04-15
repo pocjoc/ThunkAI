@@ -34,6 +34,13 @@ Parameters list:<br>
 <img src="https://github.com/pocjoc/ThunkAI/blob/main/ExampleDesign.jpg" />
 <img src="https://github.com/pocjoc/ThunkAI/blob/main/ExampleBlocks.jpg" />
 
+ Example<br>
+ You can use an example of this page in the following URL:
+ https://www.massabo.com/TeachableMachine/TTM.html
+
  NOTES:
  - Important to add a Camera in order to set the right permisions to allow the mobile to use the camera
  - The Web_viewer's URL must be secure (https) to use the user media, if not an error will appear and no camera will be enabled
+
+
+If you need some other resource, please feel free to contact me
