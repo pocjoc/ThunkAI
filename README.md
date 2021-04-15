@@ -36,7 +36,7 @@ Parameters list:<br>
 
  Example<br>
  You can use an example of this page in the following URL:
- https://www.massabo.com/TeachableMachine/TTM.html
+ https://www.massabo.com/TechableMachine/TTM.html
 
  NOTES:
  - Important to add a Camera in order to set the right permisions to allow the mobile to use the camera
