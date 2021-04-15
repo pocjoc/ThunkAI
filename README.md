@@ -41,6 +41,8 @@ Parameters list:<br>
  NOTES:
  - Important to add a Camera in order to set the right permisions to allow the mobile to use the camera
  - The Web_viewer's URL must be secure (https) to use the user media, if not an error will appear and no camera will be enabled
+ - The Web_viewer component must have, ina advanced properties, 'AllowsInLineMediaPlayback' enabled and 'MediaPlaybackRequiresUserAction' disabled, as can be seen in the following image:
+ <img src="https://user-images.githubusercontent.com/25144196/114837173-b711f600-9dd3-11eb-808e-0a1280e188a3.png" />
 
 
 If you need some other resource, please feel free to contact me
