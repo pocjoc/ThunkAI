@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div id="debugPanel">
-			<div>Debug mode on. V2.4</div>
+			<div>Debug mode on. V2.6</div>
 			<button type="button" id="initButton" onclick="init('1')">Start</button>
 			<button type="button" id="reloadButton" onclick="location.reload()">Reload</button>
 			<div id="theInformationLabel"></div>
@@ -136,6 +136,8 @@
 		// Initializates the model and calls to initializate the camera
 	    async function init(indexCam) 
 		{			
+			setMessage("Initializing canvas", true);
+			addCanvas()
 			setMessage("Initializing model", true);
 	        const modelURL = URL_ + "model.json";
 		    const metadataURL = URL_ + "metadata.json";
@@ -218,6 +220,7 @@
 			max = 0;
 			index = 0;
 			var res = ""
+
 			for (let i = 0; i < numClassesDefined_; i++) 
 			{
 				res += prediction[i].className + "("+prediction[i].probability.toFixed(2)+")<br>"
@@ -228,7 +231,7 @@
 				}
 			}
 			
-			setMessage(res, true);
+			setMessage(res, false);
 
 			var currTextFound = prediction[index].className;
 			if (lastTextFound_ == currTextFound)
